@@ -1,0 +1,1105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ComosOnlineDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Grade">
+          <Key>
+            <PropertyRef Name="GradeID" />
+          </Key>
+          <Property Name="GradeID" Type="int" Nullable="false" />
+          <Property Name="Grade" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GradeSubject">
+          <Key>
+            <PropertyRef Name="GradeSubjectID" />
+          </Key>
+          <Property Name="GradeSubjectID" Type="int" Nullable="false" />
+          <Property Name="GS_GradeID" Type="int" Nullable="false" />
+          <Property Name="GS_SubjectID" Type="int" Nullable="false" />
+          <Property Name="GradeSubject_Description" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="GradeSubjectTopic">
+          <Key>
+            <PropertyRef Name="GradeSubjectTopicID" />
+          </Key>
+          <Property Name="GradeSubjectTopicID" Type="int" Nullable="false" />
+          <Property Name="GST_TopicID" Type="int" Nullable="false" />
+          <Property Name="GST_GradeSubjectID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="PostID" />
+          </Key>
+          <Property Name="PostID" Type="int" Nullable="false" />
+          <Property Name="Post_Title" Type="nvarchar" MaxLength="100" />
+          <Property Name="Post_Views" Type="int" />
+          <Property Name="Post_Rating" Type="float" />
+          <Property Name="Post_Featured" Type="bit" />
+          <Property Name="Post_Published_Date" Type="date" />
+          <Property Name="Post_Author" Type="nvarchar" MaxLength="50" />
+          <Property Name="Post_Active" Type="bit" Nullable="false" />
+          <Property Name="Post_Content" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="PostSchool">
+          <Key>
+            <PropertyRef Name="PostSchoolID" />
+          </Key>
+          <Property Name="PostSchoolID" Type="int" Nullable="false" />
+          <Property Name="PS_PostID" Type="int" Nullable="false" />
+          <Property Name="PS_GradeSubjectID" Type="int" Nullable="false" />
+          <Property Name="PS_TopicID" Type="int" Nullable="false" />
+          <Property Name="PS_SubTopicID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="SubjectID" />
+          </Key>
+          <Property Name="SubjectID" Type="int" Nullable="false" />
+          <Property Name="Subject_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Subject_Description" Type="nvarchar(max)" />
+          <Property Name="Subject_Status" Type="bit" Nullable="false" />
+          <Property Name="Subject_Cover_URL" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="SubTopic">
+          <Key>
+            <PropertyRef Name="SubTopicID" />
+          </Key>
+          <Property Name="SubTopicID" Type="int" Nullable="false" />
+          <Property Name="SubTopic_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Topic">
+          <Key>
+            <PropertyRef Name="TopicID" />
+          </Key>
+          <Property Name="TopicID" Type="int" Nullable="false" />
+          <Property Name="Topic_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Topic_Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TopicSubTopic">
+          <Key>
+            <PropertyRef Name="TopicSubTopicID" />
+          </Key>
+          <Property Name="TopicSubTopicID" Type="int" Nullable="false" />
+          <Property Name="TST_TopicID" Type="int" Nullable="false" />
+          <Property Name="TST_SubTopicID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GradeSubject_Grade">
+          <End Role="Grade" Type="Self.Grade" Multiplicity="1" />
+          <End Role="GradeSubject" Type="Self.GradeSubject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grade">
+              <PropertyRef Name="GradeID" />
+            </Principal>
+            <Dependent Role="GradeSubject">
+              <PropertyRef Name="GS_GradeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GradeSubject_Subject">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+          <End Role="GradeSubject" Type="Self.GradeSubject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="SubjectID" />
+            </Principal>
+            <Dependent Role="GradeSubject">
+              <PropertyRef Name="GS_SubjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GradeSubjectTopic_GradeSubject">
+          <End Role="GradeSubject" Type="Self.GradeSubject" Multiplicity="1" />
+          <End Role="GradeSubjectTopic" Type="Self.GradeSubjectTopic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GradeSubject">
+              <PropertyRef Name="GradeSubjectID" />
+            </Principal>
+            <Dependent Role="GradeSubjectTopic">
+              <PropertyRef Name="GST_GradeSubjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GradeSubjectTopic_Topic">
+          <End Role="Topic" Type="Self.Topic" Multiplicity="1" />
+          <End Role="GradeSubjectTopic" Type="Self.GradeSubjectTopic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topic">
+              <PropertyRef Name="TopicID" />
+            </Principal>
+            <Dependent Role="GradeSubjectTopic">
+              <PropertyRef Name="GST_TopicID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostSchool_GradeSubject">
+          <End Role="GradeSubject" Type="Self.GradeSubject" Multiplicity="1" />
+          <End Role="PostSchool" Type="Self.PostSchool" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GradeSubject">
+              <PropertyRef Name="GradeSubjectID" />
+            </Principal>
+            <Dependent Role="PostSchool">
+              <PropertyRef Name="PS_GradeSubjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostSchool_Post">
+          <End Role="Post" Type="Self.Post" Multiplicity="1" />
+          <End Role="PostSchool" Type="Self.PostSchool" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="PostID" />
+            </Principal>
+            <Dependent Role="PostSchool">
+              <PropertyRef Name="PS_PostID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostSchool_SubTopic">
+          <End Role="SubTopic" Type="Self.SubTopic" Multiplicity="1" />
+          <End Role="PostSchool" Type="Self.PostSchool" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubTopic">
+              <PropertyRef Name="SubTopicID" />
+            </Principal>
+            <Dependent Role="PostSchool">
+              <PropertyRef Name="PS_SubTopicID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostSchool_Topic">
+          <End Role="Topic" Type="Self.Topic" Multiplicity="1" />
+          <End Role="PostSchool" Type="Self.PostSchool" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topic">
+              <PropertyRef Name="TopicID" />
+            </Principal>
+            <Dependent Role="PostSchool">
+              <PropertyRef Name="PS_TopicID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TopicSubTopic_SubTopic">
+          <End Role="SubTopic" Type="Self.SubTopic" Multiplicity="1" />
+          <End Role="TopicSubTopic" Type="Self.TopicSubTopic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubTopic">
+              <PropertyRef Name="SubTopicID" />
+            </Principal>
+            <Dependent Role="TopicSubTopic">
+              <PropertyRef Name="TST_SubTopicID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TopicSubTopic_Topic">
+          <End Role="Topic" Type="Self.Topic" Multiplicity="1" />
+          <End Role="TopicSubTopic" Type="Self.TopicSubTopic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topic">
+              <PropertyRef Name="TopicID" />
+            </Principal>
+            <Dependent Role="TopicSubTopic">
+              <PropertyRef Name="TST_TopicID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="GetAllGrades" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetContentForSubtopic" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SubTopicID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetSubjectsForThatGrade" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="GradeID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetSubjectTopicForChoosenGrade" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="GradeSubjectID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetSubtopicsForTopic" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TopicID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="ComosOnlineDBModelStoreContainer">
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Grade" EntityType="Self.Grade" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GradeSubject" EntityType="Self.GradeSubject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GradeSubjectTopic" EntityType="Self.GradeSubjectTopic" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PostSchool" EntityType="Self.PostSchool" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubTopic" EntityType="Self.SubTopic" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Topic" EntityType="Self.Topic" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TopicSubTopic" EntityType="Self.TopicSubTopic" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GradeSubject_Grade" Association="Self.FK_GradeSubject_Grade">
+            <End Role="Grade" EntitySet="Grade" />
+            <End Role="GradeSubject" EntitySet="GradeSubject" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GradeSubject_Subject" Association="Self.FK_GradeSubject_Subject">
+            <End Role="Subject" EntitySet="Subject" />
+            <End Role="GradeSubject" EntitySet="GradeSubject" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GradeSubjectTopic_GradeSubject" Association="Self.FK_GradeSubjectTopic_GradeSubject">
+            <End Role="GradeSubject" EntitySet="GradeSubject" />
+            <End Role="GradeSubjectTopic" EntitySet="GradeSubjectTopic" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GradeSubjectTopic_Topic" Association="Self.FK_GradeSubjectTopic_Topic">
+            <End Role="Topic" EntitySet="Topic" />
+            <End Role="GradeSubjectTopic" EntitySet="GradeSubjectTopic" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostSchool_GradeSubject" Association="Self.FK_PostSchool_GradeSubject">
+            <End Role="GradeSubject" EntitySet="GradeSubject" />
+            <End Role="PostSchool" EntitySet="PostSchool" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostSchool_Post" Association="Self.FK_PostSchool_Post">
+            <End Role="Post" EntitySet="Post" />
+            <End Role="PostSchool" EntitySet="PostSchool" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostSchool_SubTopic" Association="Self.FK_PostSchool_SubTopic">
+            <End Role="SubTopic" EntitySet="SubTopic" />
+            <End Role="PostSchool" EntitySet="PostSchool" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostSchool_Topic" Association="Self.FK_PostSchool_Topic">
+            <End Role="Topic" EntitySet="Topic" />
+            <End Role="PostSchool" EntitySet="PostSchool" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TopicSubTopic_SubTopic" Association="Self.FK_TopicSubTopic_SubTopic">
+            <End Role="SubTopic" EntitySet="SubTopic" />
+            <End Role="TopicSubTopic" EntitySet="TopicSubTopic" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TopicSubTopic_Topic" Association="Self.FK_TopicSubTopic_Topic">
+            <End Role="Topic" EntitySet="Topic" />
+            <End Role="TopicSubTopic" EntitySet="TopicSubTopic" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ComosOnlineDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="Grade">
+          <Key>
+            <PropertyRef Name="GradeID" />
+          </Key>
+          <Property Name="GradeID" Type="Int32" Nullable="false" />
+          <Property Name="Grade1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="GradeSubjects" Relationship="Self.FK_GradeSubject_Grade" FromRole="Grade" ToRole="GradeSubject" />
+        </EntityType>
+        <EntityType Name="GradeSubject">
+          <Key>
+            <PropertyRef Name="GradeSubjectID" />
+          </Key>
+          <Property Name="GradeSubjectID" Type="Int32" Nullable="false" />
+          <Property Name="GS_GradeID" Type="Int32" Nullable="false" />
+          <Property Name="GS_SubjectID" Type="Int32" Nullable="false" />
+          <Property Name="GradeSubject_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Grade" Relationship="Self.FK_GradeSubject_Grade" FromRole="GradeSubject" ToRole="Grade" />
+          <NavigationProperty Name="Subject" Relationship="Self.FK_GradeSubject_Subject" FromRole="GradeSubject" ToRole="Subject" />
+          <NavigationProperty Name="GradeSubjectTopics" Relationship="Self.FK_GradeSubjectTopic_GradeSubject" FromRole="GradeSubject" ToRole="GradeSubjectTopic" />
+          <NavigationProperty Name="PostSchools" Relationship="Self.FK_PostSchool_GradeSubject" FromRole="GradeSubject" ToRole="PostSchool" />
+        </EntityType>
+        <EntityType Name="GradeSubjectTopic">
+          <Key>
+            <PropertyRef Name="GradeSubjectTopicID" />
+          </Key>
+          <Property Name="GradeSubjectTopicID" Type="Int32" Nullable="false" />
+          <Property Name="GST_TopicID" Type="Int32" Nullable="false" />
+          <Property Name="GST_GradeSubjectID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GradeSubject" Relationship="Self.FK_GradeSubjectTopic_GradeSubject" FromRole="GradeSubjectTopic" ToRole="GradeSubject" />
+          <NavigationProperty Name="Topic" Relationship="Self.FK_GradeSubjectTopic_Topic" FromRole="GradeSubjectTopic" ToRole="Topic" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="PostID" />
+          </Key>
+          <Property Name="PostID" Type="Int32" Nullable="false" />
+          <Property Name="Post_Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Post_Views" Type="Int32" />
+          <Property Name="Post_Rating" Type="Double" />
+          <Property Name="Post_Featured" Type="Boolean" />
+          <Property Name="Post_Published_Date" Type="DateTime" Precision="0" />
+          <Property Name="Post_Author" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Post_Active" Type="Boolean" Nullable="false" />
+          <Property Name="Post_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PostSchools" Relationship="Self.FK_PostSchool_Post" FromRole="Post" ToRole="PostSchool" />
+        </EntityType>
+        <EntityType Name="PostSchool">
+          <Key>
+            <PropertyRef Name="PostSchoolID" />
+          </Key>
+          <Property Name="PostSchoolID" Type="Int32" Nullable="false" />
+          <Property Name="PS_PostID" Type="Int32" Nullable="false" />
+          <Property Name="PS_GradeSubjectID" Type="Int32" Nullable="false" />
+          <Property Name="PS_TopicID" Type="Int32" Nullable="false" />
+          <Property Name="PS_SubTopicID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GradeSubject" Relationship="Self.FK_PostSchool_GradeSubject" FromRole="PostSchool" ToRole="GradeSubject" />
+          <NavigationProperty Name="Post" Relationship="Self.FK_PostSchool_Post" FromRole="PostSchool" ToRole="Post" />
+          <NavigationProperty Name="SubTopic" Relationship="Self.FK_PostSchool_SubTopic" FromRole="PostSchool" ToRole="SubTopic" />
+          <NavigationProperty Name="Topic" Relationship="Self.FK_PostSchool_Topic" FromRole="PostSchool" ToRole="Topic" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="SubjectID" />
+          </Key>
+          <Property Name="SubjectID" Type="Int32" Nullable="false" />
+          <Property Name="Subject_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Subject_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Subject_Status" Type="Boolean" Nullable="false" />
+          <Property Name="Subject_Cover_URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="GradeSubjects" Relationship="Self.FK_GradeSubject_Subject" FromRole="Subject" ToRole="GradeSubject" />
+        </EntityType>
+        <EntityType Name="SubTopic">
+          <Key>
+            <PropertyRef Name="SubTopicID" />
+          </Key>
+          <Property Name="SubTopicID" Type="Int32" Nullable="false" />
+          <Property Name="SubTopic_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PostSchools" Relationship="Self.FK_PostSchool_SubTopic" FromRole="SubTopic" ToRole="PostSchool" />
+          <NavigationProperty Name="TopicSubTopics" Relationship="Self.FK_TopicSubTopic_SubTopic" FromRole="SubTopic" ToRole="TopicSubTopic" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Topic">
+          <Key>
+            <PropertyRef Name="TopicID" />
+          </Key>
+          <Property Name="TopicID" Type="Int32" Nullable="false" />
+          <Property Name="Topic_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Topic_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="GradeSubjectTopics" Relationship="Self.FK_GradeSubjectTopic_Topic" FromRole="Topic" ToRole="GradeSubjectTopic" />
+          <NavigationProperty Name="PostSchools" Relationship="Self.FK_PostSchool_Topic" FromRole="Topic" ToRole="PostSchool" />
+          <NavigationProperty Name="TopicSubTopics" Relationship="Self.FK_TopicSubTopic_Topic" FromRole="Topic" ToRole="TopicSubTopic" />
+        </EntityType>
+        <EntityType Name="TopicSubTopic">
+          <Key>
+            <PropertyRef Name="TopicSubTopicID" />
+          </Key>
+          <Property Name="TopicSubTopicID" Type="Int32" Nullable="false" />
+          <Property Name="TST_TopicID" Type="Int32" Nullable="false" />
+          <Property Name="TST_SubTopicID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SubTopic" Relationship="Self.FK_TopicSubTopic_SubTopic" FromRole="TopicSubTopic" ToRole="SubTopic" />
+          <NavigationProperty Name="Topic" Relationship="Self.FK_TopicSubTopic_Topic" FromRole="TopicSubTopic" ToRole="Topic" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GradeSubject_Grade">
+          <End Role="Grade" Type="Self.Grade" Multiplicity="1" />
+          <End Role="GradeSubject" Type="Self.GradeSubject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grade">
+              <PropertyRef Name="GradeID" />
+            </Principal>
+            <Dependent Role="GradeSubject">
+              <PropertyRef Name="GS_GradeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GradeSubject_Subject">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+          <End Role="GradeSubject" Type="Self.GradeSubject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="SubjectID" />
+            </Principal>
+            <Dependent Role="GradeSubject">
+              <PropertyRef Name="GS_SubjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GradeSubjectTopic_GradeSubject">
+          <End Role="GradeSubject" Type="Self.GradeSubject" Multiplicity="1" />
+          <End Role="GradeSubjectTopic" Type="Self.GradeSubjectTopic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GradeSubject">
+              <PropertyRef Name="GradeSubjectID" />
+            </Principal>
+            <Dependent Role="GradeSubjectTopic">
+              <PropertyRef Name="GST_GradeSubjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostSchool_GradeSubject">
+          <End Role="GradeSubject" Type="Self.GradeSubject" Multiplicity="1" />
+          <End Role="PostSchool" Type="Self.PostSchool" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GradeSubject">
+              <PropertyRef Name="GradeSubjectID" />
+            </Principal>
+            <Dependent Role="PostSchool">
+              <PropertyRef Name="PS_GradeSubjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GradeSubjectTopic_Topic">
+          <End Role="Topic" Type="Self.Topic" Multiplicity="1" />
+          <End Role="GradeSubjectTopic" Type="Self.GradeSubjectTopic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topic">
+              <PropertyRef Name="TopicID" />
+            </Principal>
+            <Dependent Role="GradeSubjectTopic">
+              <PropertyRef Name="GST_TopicID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostSchool_Post">
+          <End Role="Post" Type="Self.Post" Multiplicity="1" />
+          <End Role="PostSchool" Type="Self.PostSchool" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="PostID" />
+            </Principal>
+            <Dependent Role="PostSchool">
+              <PropertyRef Name="PS_PostID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostSchool_SubTopic">
+          <End Role="SubTopic" Type="Self.SubTopic" Multiplicity="1" />
+          <End Role="PostSchool" Type="Self.PostSchool" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubTopic">
+              <PropertyRef Name="SubTopicID" />
+            </Principal>
+            <Dependent Role="PostSchool">
+              <PropertyRef Name="PS_SubTopicID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostSchool_Topic">
+          <End Role="Topic" Type="Self.Topic" Multiplicity="1" />
+          <End Role="PostSchool" Type="Self.PostSchool" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topic">
+              <PropertyRef Name="TopicID" />
+            </Principal>
+            <Dependent Role="PostSchool">
+              <PropertyRef Name="PS_TopicID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TopicSubTopic_SubTopic">
+          <End Role="SubTopic" Type="Self.SubTopic" Multiplicity="1" />
+          <End Role="TopicSubTopic" Type="Self.TopicSubTopic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubTopic">
+              <PropertyRef Name="SubTopicID" />
+            </Principal>
+            <Dependent Role="TopicSubTopic">
+              <PropertyRef Name="TST_SubTopicID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TopicSubTopic_Topic">
+          <End Role="Topic" Type="Self.Topic" Multiplicity="1" />
+          <End Role="TopicSubTopic" Type="Self.TopicSubTopic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topic">
+              <PropertyRef Name="TopicID" />
+            </Principal>
+            <Dependent Role="TopicSubTopic">
+              <PropertyRef Name="TST_TopicID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="ComosOnlineDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="Grades" EntityType="Self.Grade" />
+          <EntitySet Name="GradeSubjects" EntityType="Self.GradeSubject" />
+          <EntitySet Name="GradeSubjectTopics" EntityType="Self.GradeSubjectTopic" />
+          <EntitySet Name="Posts" EntityType="Self.Post" />
+          <EntitySet Name="PostSchools" EntityType="Self.PostSchool" />
+          <EntitySet Name="Subjects" EntityType="Self.Subject" />
+          <EntitySet Name="SubTopics" EntityType="Self.SubTopic" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Topics" EntityType="Self.Topic" />
+          <EntitySet Name="TopicSubTopics" EntityType="Self.TopicSubTopic" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GradeSubject_Grade" Association="Self.FK_GradeSubject_Grade">
+            <End Role="Grade" EntitySet="Grades" />
+            <End Role="GradeSubject" EntitySet="GradeSubjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GradeSubject_Subject" Association="Self.FK_GradeSubject_Subject">
+            <End Role="Subject" EntitySet="Subjects" />
+            <End Role="GradeSubject" EntitySet="GradeSubjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GradeSubjectTopic_GradeSubject" Association="Self.FK_GradeSubjectTopic_GradeSubject">
+            <End Role="GradeSubject" EntitySet="GradeSubjects" />
+            <End Role="GradeSubjectTopic" EntitySet="GradeSubjectTopics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostSchool_GradeSubject" Association="Self.FK_PostSchool_GradeSubject">
+            <End Role="GradeSubject" EntitySet="GradeSubjects" />
+            <End Role="PostSchool" EntitySet="PostSchools" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GradeSubjectTopic_Topic" Association="Self.FK_GradeSubjectTopic_Topic">
+            <End Role="Topic" EntitySet="Topics" />
+            <End Role="GradeSubjectTopic" EntitySet="GradeSubjectTopics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostSchool_Post" Association="Self.FK_PostSchool_Post">
+            <End Role="Post" EntitySet="Posts" />
+            <End Role="PostSchool" EntitySet="PostSchools" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostSchool_SubTopic" Association="Self.FK_PostSchool_SubTopic">
+            <End Role="SubTopic" EntitySet="SubTopics" />
+            <End Role="PostSchool" EntitySet="PostSchools" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostSchool_Topic" Association="Self.FK_PostSchool_Topic">
+            <End Role="Topic" EntitySet="Topics" />
+            <End Role="PostSchool" EntitySet="PostSchools" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TopicSubTopic_SubTopic" Association="Self.FK_TopicSubTopic_SubTopic">
+            <End Role="SubTopic" EntitySet="SubTopics" />
+            <End Role="TopicSubTopic" EntitySet="TopicSubTopics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TopicSubTopic_Topic" Association="Self.FK_TopicSubTopic_Topic">
+            <End Role="Topic" EntitySet="Topics" />
+            <End Role="TopicSubTopic" EntitySet="TopicSubTopics" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <FunctionImport Name="GetAllGrades" ReturnType="Collection(ComosOnlineDBModel.GetAllGrades_Result)" />
+          <FunctionImport Name="GetContentForSubtopic">
+            <Parameter Name="SubTopicID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetSubjectsForThatGrade">
+            <Parameter Name="GradeID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetSubjectTopicForChoosenGrade">
+            <Parameter Name="GradeSubjectID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetSubtopicsForTopic">
+            <Parameter Name="TopicID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(ComosOnlineDBModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(ComosOnlineDBModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+        </EntityContainer>
+        <ComplexType Name="GetAllGrades_Result">
+          <Property Type="Int32" Name="GradeID" Nullable="false" />
+          <Property Type="String" Name="Grade" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ComosOnlineDBModelStoreContainer" CdmEntityContainer="ComosOnlineDBEntities">
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="ComosOnlineDBModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="ComosOnlineDBModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="ComosOnlineDBModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="ComosOnlineDBModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Grades">
+            <EntityTypeMapping TypeName="ComosOnlineDBModel.Grade">
+              <MappingFragment StoreEntitySet="Grade">
+                <ScalarProperty Name="GradeID" ColumnName="GradeID" />
+                <ScalarProperty Name="Grade1" ColumnName="Grade" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GradeSubjects">
+            <EntityTypeMapping TypeName="ComosOnlineDBModel.GradeSubject">
+              <MappingFragment StoreEntitySet="GradeSubject">
+                <ScalarProperty Name="GradeSubjectID" ColumnName="GradeSubjectID" />
+                <ScalarProperty Name="GS_GradeID" ColumnName="GS_GradeID" />
+                <ScalarProperty Name="GS_SubjectID" ColumnName="GS_SubjectID" />
+                <ScalarProperty Name="GradeSubject_Description" ColumnName="GradeSubject_Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GradeSubjectTopics">
+            <EntityTypeMapping TypeName="ComosOnlineDBModel.GradeSubjectTopic">
+              <MappingFragment StoreEntitySet="GradeSubjectTopic">
+                <ScalarProperty Name="GradeSubjectTopicID" ColumnName="GradeSubjectTopicID" />
+                <ScalarProperty Name="GST_TopicID" ColumnName="GST_TopicID" />
+                <ScalarProperty Name="GST_GradeSubjectID" ColumnName="GST_GradeSubjectID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Posts">
+            <EntityTypeMapping TypeName="ComosOnlineDBModel.Post">
+              <MappingFragment StoreEntitySet="Post">
+                <ScalarProperty Name="PostID" ColumnName="PostID" />
+                <ScalarProperty Name="Post_Title" ColumnName="Post_Title" />
+                <ScalarProperty Name="Post_Views" ColumnName="Post_Views" />
+                <ScalarProperty Name="Post_Rating" ColumnName="Post_Rating" />
+                <ScalarProperty Name="Post_Featured" ColumnName="Post_Featured" />
+                <ScalarProperty Name="Post_Published_Date" ColumnName="Post_Published_Date" />
+                <ScalarProperty Name="Post_Author" ColumnName="Post_Author" />
+                <ScalarProperty Name="Post_Active" ColumnName="Post_Active" />
+                <ScalarProperty Name="Post_Content" ColumnName="Post_Content" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PostSchools">
+            <EntityTypeMapping TypeName="ComosOnlineDBModel.PostSchool">
+              <MappingFragment StoreEntitySet="PostSchool">
+                <ScalarProperty Name="PostSchoolID" ColumnName="PostSchoolID" />
+                <ScalarProperty Name="PS_PostID" ColumnName="PS_PostID" />
+                <ScalarProperty Name="PS_GradeSubjectID" ColumnName="PS_GradeSubjectID" />
+                <ScalarProperty Name="PS_TopicID" ColumnName="PS_TopicID" />
+                <ScalarProperty Name="PS_SubTopicID" ColumnName="PS_SubTopicID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subjects">
+            <EntityTypeMapping TypeName="ComosOnlineDBModel.Subject">
+              <MappingFragment StoreEntitySet="Subject">
+                <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
+                <ScalarProperty Name="Subject_Name" ColumnName="Subject_Name" />
+                <ScalarProperty Name="Subject_Description" ColumnName="Subject_Description" />
+                <ScalarProperty Name="Subject_Status" ColumnName="Subject_Status" />
+                <ScalarProperty Name="Subject_Cover_URL" ColumnName="Subject_Cover_URL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubTopics">
+            <EntityTypeMapping TypeName="ComosOnlineDBModel.SubTopic">
+              <MappingFragment StoreEntitySet="SubTopic">
+                <ScalarProperty Name="SubTopicID" ColumnName="SubTopicID" />
+                <ScalarProperty Name="SubTopic_Name" ColumnName="SubTopic_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ComosOnlineDBModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Topics">
+            <EntityTypeMapping TypeName="ComosOnlineDBModel.Topic">
+              <MappingFragment StoreEntitySet="Topic">
+                <ScalarProperty Name="TopicID" ColumnName="TopicID" />
+                <ScalarProperty Name="Topic_Name" ColumnName="Topic_Name" />
+                <ScalarProperty Name="Topic_Description" ColumnName="Topic_Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TopicSubTopics">
+            <EntityTypeMapping TypeName="ComosOnlineDBModel.TopicSubTopic">
+              <MappingFragment StoreEntitySet="TopicSubTopic">
+                <ScalarProperty Name="TopicSubTopicID" ColumnName="TopicSubTopicID" />
+                <ScalarProperty Name="TST_TopicID" ColumnName="TST_TopicID" />
+                <ScalarProperty Name="TST_SubTopicID" ColumnName="TST_SubTopicID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="ComosOnlineDBModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="GetAllGrades" FunctionName="ComosOnlineDBModel.Store.GetAllGrades">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ComosOnlineDBModel.GetAllGrades_Result">
+                <ScalarProperty Name="GradeID" ColumnName="GradeID" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetContentForSubtopic" FunctionName="ComosOnlineDBModel.Store.GetContentForSubtopic" />
+          <FunctionImportMapping FunctionImportName="GetSubjectsForThatGrade" FunctionName="ComosOnlineDBModel.Store.GetSubjectsForThatGrade" />
+          <FunctionImportMapping FunctionImportName="GetSubjectTopicForChoosenGrade" FunctionName="ComosOnlineDBModel.Store.GetSubjectTopicForChoosenGrade" />
+          <FunctionImportMapping FunctionImportName="GetSubtopicsForTopic" FunctionName="ComosOnlineDBModel.Store.GetSubtopicsForTopic" />
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="ComosOnlineDBModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="ComosOnlineDBModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="ComosOnlineDBModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="ComosOnlineDBModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ComosOnlineDBModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="ComosOnlineDBModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ComosOnlineDBModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="ComosOnlineDBModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="ComosOnlineDBModel.Store.sp_upgraddiagrams" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
